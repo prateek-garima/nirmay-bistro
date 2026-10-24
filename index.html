@@ -241,6 +241,22 @@ input[type=text]:focus,button:focus-visible,a:focus-visible{outline:3px solid va
   $('cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent("Nirmay's 3rd Birthday Bistro") +
     '&dates=20261101T110000Z/20261101T141500Z&details=' + encodeURIComponent('Kitchen play, sweet treats and celebration! Hosted by Prateek & Garima.') +
     '&location=' + encodeURIComponent('Cottage 854, House of Hiranandani, Devanahalli');
+  // Open apps directly on phones (WhatsApp + calendar), web fallback on computers
+  var UA = navigator.userAgent, isAndroid = /Android/i.test(UA), isIOS = /iPhone|iPad|iPod/i.test(UA);
+  (function(){
+    var t = encodeURIComponent("Hi! Question about Nirmay's birthday party:"), web = 'https://wa.me/' + C.HOST_WHATSAPP + '?text=' + t, a = $('wa');
+    if (isAndroid) { a.href = 'intent://send/?phone=' + C.HOST_WHATSAPP + '&text=' + t + '#Intent;scheme=whatsapp;S.browser_fallback_url=' + encodeURIComponent(web) + ';end'; a.removeAttribute('target'); }
+    else if (isIOS) { a.href = 'whatsapp://send?phone=' + C.HOST_WHATSAPP + '&text=' + t; a.removeAttribute('target'); }
+    else { a.href = web; }
+  })();
+  (function(){
+    var b = document.querySelector('.calbtn'); if (!b) return;
+    var st = Date.UTC(2026, 10, 1, 11, 0), en = Date.UTC(2026, 10, 1, 14, 15);
+    var title = "Nirmay's 3rd Birthday Bistro", loc = 'Cottage 854, House of Hiranandani, Devanahalli', desc = 'Kitchen play, sweet treats and celebration! Hosted by Prateek & Garima.';
+    if (isAndroid) b.href = 'intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;S.title=' + encodeURIComponent(title) + ';S.eventLocation=' + encodeURIComponent(loc) + ';S.description=' + encodeURIComponent(desc) + ';l.beginTime=' + st + ';l.endTime=' + en + ';end';
+    else if (isIOS) b.href = 'invite.ics';
+    else { b.href = $('cal').href; b.target = '_blank'; b.rel = 'noopener'; }
+  })();
   function paint(){
     $('yes').setAttribute('aria-pressed', state.attending === true);
     $('no').setAttribute('aria-pressed', state.attending === false);
