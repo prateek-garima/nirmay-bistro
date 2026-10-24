@@ -253,7 +253,7 @@ input[type=text]:focus,button:focus-visible,a:focus-visible{outline:3px solid va
     var b = document.querySelector('.calbtn'); if (!b) return;
     var st = Date.UTC(2026, 10, 1, 11, 0), en = Date.UTC(2026, 10, 1, 14, 15);
     var title = "Nirmay's 3rd Birthday Bistro", loc = 'Cottage 854, House of Hiranandani, Devanahalli', desc = 'Kitchen play, sweet treats and celebration! Hosted by Prateek & Garima.';
-    if (isAndroid) b.href = 'intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;S.title=' + encodeURIComponent(title) + ';S.eventLocation=' + encodeURIComponent(loc) + ';S.description=' + encodeURIComponent(desc) + ';l.beginTime=' + st + ';l.endTime=' + en + ';end';
+    if (isAndroid) { var gq = 'calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) + '&dates=20261101T110000Z/20261101T141500Z&details=' + encodeURIComponent(desc) + '&location=' + encodeURIComponent(loc); b.href = 'intent://' + gq + '#Intent;scheme=https;package=com.google.android.calendar;S.browser_fallback_url=' + encodeURIComponent('https://prateek-garima.github.io/nirmay-bistro/invite.ics') + ';end'; }
     else if (isIOS) b.href = 'invite.ics';
     else { b.href = $('cal').href; b.target = '_blank'; b.rel = 'noopener'; }
   })();
