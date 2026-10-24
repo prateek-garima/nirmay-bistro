@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Nirmay Bistro//RSVP//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:nirmay-3rd-birthday-bistro-2026@prateek-garima.github.io
+DTSTAMP:20261024T000000Z
+DTSTART:20261101T110000Z
+DTEND:20261101T141500Z
+SUMMARY:Nirmay's 3rd Birthday Bistro
+LOCATION:Cottage 854\, House of Hiranandani\, Devanahalli
+DESCRIPTION:Kitchen play\, sweet treats and celebration! Hosted by Prateek & Garima.
+URL:https://prateek-garima.github.io/rsvp/
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Nirmay's Birthday Bistro today at 4:30 PM
+END:VALARM
+END:VEVENT
+END:VCALENDAR
