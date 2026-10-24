@@ -243,6 +243,9 @@ input[type=text]:focus,button:focus-visible,a:focus-visible{outline:3px solid va
     '&location=' + encodeURIComponent('Cottage 854, House of Hiranandani, Devanahalli');
   // Open apps directly on phones (WhatsApp + calendar), web fallback on computers
   var UA = navigator.userAgent, isAndroid = /Android/i.test(UA), isIOS = /iPhone|iPad|iPod/i.test(UA);
+  (function(){ var m = $('map'); if (!m || !C.MAP_URL) return; var q = encodeURIComponent('House of Hiranandani, Devanahalli');
+    if (isAndroid) { m.href = 'intent:0,0?q=' + q + '#Intent;scheme=geo;S.browser_fallback_url=' + encodeURIComponent(C.MAP_URL) + ';end'; m.removeAttribute('target'); }
+    else if (isIOS) { m.href = 'https://maps.apple.com/?q=' + q; m.removeAttribute('target'); } })();
   (function(){
     var t = encodeURIComponent("Hi! Question about Nirmay's birthday party:"), web = 'https://wa.me/' + C.HOST_WHATSAPP + '?text=' + t, a = $('wa');
     if (isAndroid) { a.href = 'intent://send/?phone=' + C.HOST_WHATSAPP + '&text=' + t + '#Intent;scheme=whatsapp;S.browser_fallback_url=' + encodeURIComponent(web) + ';end'; a.removeAttribute('target'); }
